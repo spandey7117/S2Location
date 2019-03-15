@@ -6,7 +6,6 @@ import java.util.Iterator;
 
 import org.bson.Document;
 
-
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -15,12 +14,8 @@ import com.mongodb.client.model.Filters;
 
 public class DBManager {
 
-	
-	
-	
-	
-	public ArrayList<String> findInDBBy( MongoClient mongoClient) {
-		ArrayList<String> list= new ArrayList<String>();
+	public ArrayList<String> findInDBBy(MongoClient mongoClient) {
+		ArrayList<String> list = new ArrayList<String>();
 		try {
 			// MongoClient mongoClient = new MongoClient(new
 			// MongoClientURI("mongodb://admin:admin@cluster0-shard-00-00-2nifw.mongodb.net:27017,cluster0-shard-00-01-2nifw.mongodb.net:27017,cluster0-shard-00-02-2nifw.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true"));
@@ -36,32 +31,28 @@ public class DBManager {
 
 			if (it.hasNext()) {
 				System.out.println("User present in pending status");
-				
-			
-				
+
 			} else {
-				
+
 				System.out.println("User Not present in pending status");
 			}
-			
-			 it = iterDoc.iterator();
-int count=0;
+
+			it = iterDoc.iterator();
+			int count = 0;
 			while (it.hasNext()) {
-				String ss=it.next().toString();
+				String ss = it.next().toString();
 				System.out.println(++count);
 				System.out.println(ss);
 				list.add(ss);
-			
-				
-			} 
-			
+
+			}
+
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
-		
+
 			return list;
 		}
 	}
 
-	
 }
