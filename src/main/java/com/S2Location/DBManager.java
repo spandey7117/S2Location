@@ -46,11 +46,11 @@ public class DBManager {
 				list.add(ss);
 
 			}
-
+			
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			mongoClient.close();
 			return list;
 		}
 	}

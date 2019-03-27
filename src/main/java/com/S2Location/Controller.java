@@ -28,8 +28,9 @@ import com.mongodb.MongoClient;
 			CreateRegion createRegion = new CreateRegion();
 			CheckIfPresent checkIfPresent = new CheckIfPresent();
 			res.id=id;
+			MongoClient mongoClient= cm.createConnection();
 			try {
-				MongoClient mongoClient= cm.createConnection();
+				
 			ArrayList<String>	user=  dbManager.findInDBBy( mongoClient);
 		ArrayList<UserDetail> userDetails=	gt.converter(user);
 		for(int i=0;i<userDetails.size();i++)
@@ -95,9 +96,26 @@ import com.mongodb.MongoClient;
 				e.printStackTrace();
 			}
 			
-			
+			mongoClient.close();
 			
 			return res;
+			
+	}
+		@RequestMapping("/check")
+		public String check() {
+		String hello="hello";
+			try {
+
+				
+				
+				return hello;
+			}
+			catch (Exception e) {
+				System.out.println("Error In controller");
+				e.printStackTrace();
+				
+				return hello;
+			}
 			
 	}
 	}
