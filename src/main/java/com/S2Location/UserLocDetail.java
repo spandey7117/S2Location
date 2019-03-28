@@ -2,7 +2,7 @@ package com.S2Location;
 
 import com.google.common.geometry.S2Point;
 
-public class UserDetail {
+public class UserLocDetail {
 S2Point startLocation;
 S2Point endLocation;
 String id;
@@ -11,7 +11,7 @@ double startLongitude;
 double startLatitude;
 double endLongitude;
 double endLatitude;
-public UserDetail(S2Point startLocation, S2Point endLocation, String id, String status, double startLongitude,
+public UserLocDetail(S2Point startLocation, S2Point endLocation, String id, String status, double startLongitude,
 		double startLatitude, double endLongitude, double endLatitude) {
 	super();
 	this.startLocation = startLocation;

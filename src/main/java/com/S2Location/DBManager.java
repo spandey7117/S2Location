@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import org.bson.Document;
 
+
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -52,6 +53,35 @@ public class DBManager {
 			e.printStackTrace();
 			mongoClient.close();
 			return list;
+		}
+	}
+	
+	public UserDetails findInDBEmailID(String id, MongoClient mongoClient) {
+		UserDetails user = new UserDetails();
+		try {
+
+			MongoDatabase database = mongoClient.getDatabase("myNewDB");
+			MongoCollection<Document> collection = database.getCollection("sampleCollection");
+			System.out.println("Collection sampleCollection selected successfully");
+
+			FindIterable<Document> iterDoc = collection.find(Filters.eq("emailID",id));
+			UserParser userParser= new UserParser();
+			// Getting the iterator
+			Iterator it = iterDoc.iterator();
+
+			if (it.hasNext()) {
+				System.out.println( id+ " email  exists");
+				user= userParser.parser(it.next().toString());
+			} else {
+				System.out.println( id + " email does not exists in db");
+				
+			}
+			
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return user;
 		}
 	}
 

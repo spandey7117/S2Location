@@ -5,9 +5,9 @@ import com.google.common.geometry.S2LatLng;
 import com.google.common.geometry.S2Point;
 public class GettingUserDetails {
 
-	ArrayList<UserDetail> converter(ArrayList<String> ss)
+	ArrayList<UserLocDetail> converter(ArrayList<String> ss)
 	{int count=0;
-	ArrayList<UserDetail> usr= new ArrayList<UserDetail>();
+	ArrayList<UserLocDetail> usr= new ArrayList<UserLocDetail>();
 		for(int i=0;i<ss.size();i++) {
 			
 			String s= ss.get(i);
@@ -57,7 +57,7 @@ public class GettingUserDetails {
 				
 				count++;
 		}
-			UserDetail ud= new UserDetail(startLocation, endLocation, id, status, startLongitude, startLatitude, endLongitude, endLatitude);
+			UserLocDetail ud= new UserLocDetail(startLocation, endLocation, id, status, startLongitude, startLatitude, endLongitude, endLatitude);
 			usr.add(ud);
 			count=0;
 		

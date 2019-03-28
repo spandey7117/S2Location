@@ -32,17 +32,17 @@ import com.mongodb.MongoClient;
 			try {
 				
 			ArrayList<String>	user=  dbManager.findInDBBy( mongoClient);
-		ArrayList<UserDetail> userDetails=	gt.converter(user);
+		ArrayList<UserLocDetail> userDetails=	gt.converter(user);
 		for(int i=0;i<userDetails.size();i++)
 		{
-			UserDetail uu=userDetails.get(i);
+			UserLocDetail uu=userDetails.get(i);
 		
 			if(uu.id.equals(id))
 			{	check=1;
 				userDetails.remove(uu);
 				System.out.println("present in DB , given ID");
 				S2CellUnion s2CellUnionStart=createRegion.S2CellIdsCoveringGivenRadius(5000, String.valueOf(uu.startLatitude), String.valueOf(uu.startLongitude));
-				ArrayList<UserDetail> userSimilarStart= checkIfPresent.GetNearbyUsersStart(userDetails, s2CellUnionStart);
+				ArrayList<UserLocDetail> userSimilarStart= checkIfPresent.GetNearbyUsersStart(userDetails, s2CellUnionStart);
 				if(userSimilarStart.isEmpty()) {
 					System.out.println("userSimilarStart is empty");
 					res.setResponseCode("400");
@@ -51,7 +51,7 @@ import com.mongodb.MongoClient;
 				else {
 					System.out.println("userSimilarStart is not empty");
 				S2CellUnion s2CellUnionEnd=createRegion.S2CellIdsCoveringGivenRadius(5000, String.valueOf(uu.endLatitude), String.valueOf(uu.endLongitude));
-				ArrayList<UserDetail> userSimilarEnd= checkIfPresent.GetNearbyUsersEnd(userSimilarStart, s2CellUnionEnd);
+				ArrayList<UserLocDetail> userSimilarEnd= checkIfPresent.GetNearbyUsersEnd(userSimilarStart, s2CellUnionEnd);
 				System.out.println("Length of userSimilarEnd "+userSimilarEnd.size());
 				resArray= new ResultSimilarUser[userSimilarEnd.size()];
 				for(int k=0;k<userSimilarEnd.size();k++)

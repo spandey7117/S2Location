@@ -7,10 +7,10 @@ import com.google.common.geometry.S2CellUnion;
 
 public class CheckIfPresent {
 
-	public ArrayList<UserDetail> GetNearbyUsersStart(ArrayList<UserDetail> userDetails,S2CellUnion s2CellUnion)
+	public ArrayList<UserLocDetail> GetNearbyUsersStart(ArrayList<UserLocDetail> userDetails,S2CellUnion s2CellUnion)
 	{
 		
-		ArrayList<UserDetail> similar= new ArrayList<UserDetail>();
+		ArrayList<UserLocDetail> similar= new ArrayList<UserLocDetail>();
 		for(int i=0 ; i<userDetails.size();i++)
 		{
 		S2CellId	cell = S2CellId.fromPoint(userDetails.get(i).startLocation);
@@ -30,8 +30,8 @@ public class CheckIfPresent {
 	return similar;	
 	}
 	
-	public ArrayList<UserDetail> GetNearbyUsersEnd(ArrayList<UserDetail> userDetails,S2CellUnion s2CellUnion)
-	{ArrayList<UserDetail> similar= new ArrayList<UserDetail>();
+	public ArrayList<UserLocDetail> GetNearbyUsersEnd(ArrayList<UserLocDetail> userDetails,S2CellUnion s2CellUnion)
+	{ArrayList<UserLocDetail> similar= new ArrayList<UserLocDetail>();
 		for(int i=0 ; i<userDetails.size();i++)
 		{
 		S2CellId	cell = S2CellId.fromPoint(userDetails.get(i).endLocation);
