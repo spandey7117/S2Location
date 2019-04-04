@@ -11,8 +11,18 @@ double startLongitude;
 double startLatitude;
 double endLongitude;
 double endLatitude;
+String time;
+String preferedMode;
+String preferedSex;
+double rating;
+public double getRating() {
+	return rating;
+}
+public void setRating(double rating) {
+	this.rating = rating;
+}
 public UserLocDetail(S2Point startLocation, S2Point endLocation, String id, String status, double startLongitude,
-		double startLatitude, double endLongitude, double endLatitude) {
+		double startLatitude, double endLongitude, double endLatitude,String time, String preferedMode ,String preferedSex, double rating) {
 	super();
 	this.startLocation = startLocation;
 	this.endLocation = endLocation;
@@ -22,6 +32,28 @@ public UserLocDetail(S2Point startLocation, S2Point endLocation, String id, Stri
 	this.startLatitude = startLatitude;
 	this.endLongitude = endLongitude;
 	this.endLatitude = endLatitude;
+	this.time = time;
+	this.preferedMode = preferedMode;
+	this.preferedSex = preferedSex;
+	this.rating=rating;
+}
+public String getTime() {
+	return time;
+}
+public void setTime(String time) {
+	this.time = time;
+}
+public String getPreferedMode() {
+	return preferedMode;
+}
+public void setPreferedMode(String preferedMode) {
+	this.preferedMode = preferedMode;
+}
+public String getPreferedSex() {
+	return preferedSex;
+}
+public void setPreferedSex(String preferedSex) {
+	this.preferedSex = preferedSex;
 }
 public S2Point getStartLocation() {
 	return startLocation;

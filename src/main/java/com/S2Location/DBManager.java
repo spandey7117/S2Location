@@ -7,6 +7,7 @@ import java.util.Iterator;
 import org.bson.Document;
 
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -22,8 +23,8 @@ public class DBManager {
 			// MongoClientURI("mongodb://admin:admin@cluster0-shard-00-00-2nifw.mongodb.net:27017,cluster0-shard-00-01-2nifw.mongodb.net:27017,cluster0-shard-00-02-2nifw.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true"));
 			// System.out.println("Connected Successfully");
 			MongoDatabase database = mongoClient.getDatabase("myNewDB");
-			MongoCollection<Document> collection = database.getCollection("sampleCollection2");
-			System.out.println("Collection sampleCollection selected successfully");
+			MongoCollection<Document> collection = database.getCollection("ASE_TestCollection");
+			System.out.println("Collection ASE_TestCollection selected successfully");
 
 			FindIterable<Document> iterDoc = collection.find(Filters.eq("status", "Pending"));
 
@@ -61,8 +62,8 @@ public class DBManager {
 		try {
 
 			MongoDatabase database = mongoClient.getDatabase("myNewDB");
-			MongoCollection<Document> collection = database.getCollection("sampleCollection");
-			System.out.println("Collection sampleCollection selected successfully");
+			MongoCollection<Document> collection = database.getCollection("UsersCollection");
+			System.out.println("Collection UsersCollection selected successfully");
 
 			FindIterable<Document> iterDoc = collection.find(Filters.eq("emailID",id));
 			UserParser userParser= new UserParser();
@@ -73,7 +74,7 @@ public class DBManager {
 				System.out.println( id+ " email  exists");
 				user= userParser.parser(it.next().toString());
 			} else {
-				System.out.println( id + " email does not exists in db");
+				System.out.println( id + " email does not exists in db UsersCollection");
 				
 			}
 			
@@ -84,5 +85,71 @@ public class DBManager {
 			return user;
 		}
 	}
+	
+	public UserDetails findInDBEmailID2(String id, MongoClient mongoClient) {
+		UserDetails user = new UserDetails();
+		try {
+
+			MongoDatabase database = mongoClient.getDatabase("myNewDB");
+			MongoCollection<Document> collection = database.getCollection("UsersCollection");
+			System.out.println("Collection UsersCollection selected successfully");
+
+			FindIterable<Document> iterDoc = collection.find(Filters.eq("emailID",id));
+			UserParser userParser= new UserParser();
+			// Getting the iterator
+			Iterator it = iterDoc.iterator();
+
+			if (it.hasNext()) {
+				System.out.println( id+ " email  exists");
+				user= userParser.parser(it.next().toString());
+				System.out.println("user rating "+user.getEmailID()+user.getRating());
+			} else {
+				System.out.println( id + " email does not exists in db ASE_TestCollection");
+				
+			}
+			
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return user;
+		}
+	}
+	
+	public Boolean findInDBEmailIDAndSex(String id,String sex, MongoClient mongoClient) {
+		
+		try {
+
+			MongoDatabase database = mongoClient.getDatabase("myNewDB");
+			MongoCollection<Document> collection = database.getCollection("UsersCollection");
+			System.out.println("Collection UsersCollection selected successfully");
+			BasicDBObject query = new BasicDBObject();
+			
+			query.put("emailID", id);
+			query.put("sex", sex);
+			System.out.println(query.toJson().toString());
+			FindIterable<Document> iterDoc = collection.find( query);
+
+			// Getting the iterator
+			Iterator it = iterDoc.iterator();
+
+			if (it.hasNext()) {
+				System.out.println( id+ " User Valid");
+				
+				return true;
+			} else {
+				System.out.println( id + " User Invailde");
+				return false;
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+			return false;
+		}
+	}
+	
+	
+
 
 }

@@ -33,6 +33,10 @@ public class UserParser {
 		{
 			user.setSex(s2[1]);
 		}
+		else if(s2[0].trim().equals("rating"))
+		{
+			user.setRating(s2[1].substring(0,s2[1].length()-2));
+		}
 		
 	}
 	return user;

@@ -17,14 +17,14 @@ public class CheckIfPresent {
 		System.out.println(cell.id());
 		if(s2CellUnion.contains(cell))
 				{
-			System.out.println(userDetails.get(i).startLatitude+" , "+userDetails.get(i).startLongitude +" is present");
+			//System.out.println(userDetails.get(i).startLatitude+" , "+userDetails.get(i).startLongitude +" is present");
 			similar.add(userDetails.get(i));
 				}
 		
 		else
 		{
 			
-			System.out.println(userDetails.get(i).startLatitude+" , "+userDetails.get(i).startLongitude +" is not present");
+			//System.out.println(userDetails.get(i).startLatitude+" , "+userDetails.get(i).startLongitude +" is not present");
 		}
 	}
 	return similar;	
@@ -38,7 +38,7 @@ public class CheckIfPresent {
 		System.out.println(cell.id());
 		if(s2CellUnion.contains(cell))
 				{
-			System.out.println(userDetails.get(i).endLatitude+" , "+userDetails.get(i).endLongitude +" is present");
+		//	System.out.println(userDetails.get(i).endLatitude+" , "+userDetails.get(i).endLongitude +" is present");
 				
 			similar.add(userDetails.get(i));
 				}
@@ -46,7 +46,7 @@ public class CheckIfPresent {
 		else
 		{
 			
-			System.out.println(userDetails.get(i).endLatitude+" , "+userDetails.get(i).endLongitude +" is not present");
+			//System.out.println(userDetails.get(i).endLatitude+" , "+userDetails.get(i).endLongitude +" is not present");
 		}
 	}
 	return similar;	
